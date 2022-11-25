@@ -9,11 +9,11 @@ tags: [jekyll]     # TAG names should always be lowercase
 
 This site is build using [Jekyll](https://jekyllrb.com), using the [Chirpy theme](https://github.com/cotes2020/jekyll-theme-chirpy/), and is hosted on [Github Pages](https://pages.github.com). This [video](https://www.youtube.com/watch?v=F8iOU1ci19Q) was helpful in both finding the theme and seeing the basic setup.
 
-## Installing Ruby
+# Installing Ruby
 
 Jekyll requires ruby to build the site and run a local server for testing. Jekyll provides [documentation](https://jekyllrb.com/docs/installation/macos/) on this process for installing dependancies with [brew](https://brew.sh/).
 
-## Setting Up Chirpy
+# Setting Up Chirpy
 
 The developer of Chirpy provides a [Starter](https://github.com/cotes2020/chirpy-starter/generate) which can be used via GitHub to initialize the repo for use.
 
