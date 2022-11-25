@@ -5,8 +5,6 @@ categories: [Tech]
 tags: [jekyll]     # TAG names should always be lowercase
 ---
 
-# Setting Up This Site
-
 This site is build using [Jekyll](https://jekyllrb.com), using the [Chirpy theme](https://github.com/cotes2020/jekyll-theme-chirpy/), and is hosted on [Github Pages](https://pages.github.com). This [video](https://www.youtube.com/watch?v=F8iOU1ci19Q) was helpful in both finding the theme and seeing the basic setup.
 
 # Installing Ruby
