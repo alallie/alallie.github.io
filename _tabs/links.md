@@ -40,7 +40,6 @@ order: 5
     padding-right: .75em;
     vertical-align: middle;
   }
-
 </style>
 
 
