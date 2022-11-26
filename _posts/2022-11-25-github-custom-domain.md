@@ -1,5 +1,5 @@
 ---
-title: GitHub Custom Domains
+title: GitHub Custom Domain
 date: 2022-11-25 17:16:00 -0500
 categories: [Tech]
 tags: [jekyll]     # TAG names should always be lowercase
