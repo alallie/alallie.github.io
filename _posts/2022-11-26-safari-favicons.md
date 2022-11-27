@@ -2,7 +2,7 @@
 title: Safari Favicons
 date: 2022-11-26 19:10:00 -0500
 categories: [Tech]
-tags: [jekyll]     # TAG names should always be lowercase
+tags: [apple,safari]     # TAG names should always be lowercase
 ---
 
 Safari tends to not look for updated favicons for websites and simply relies on its own local cache. To remove the cache and get updated favicons, do the following:
