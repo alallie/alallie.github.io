@@ -83,7 +83,6 @@ order: 5
     <ul>
       <li><a href="https://mindly.social"><img src="../my_images/logos/mastodon.png" width="64" />Mastodon</a></li>
       <li><a href="https://app.plex.tv/desktop/"><img src="../my_images/logos/plex.png" width="64" />Plex</a></li>
-      <li><a href="https://reddit.com"><img src="../my_images/logos/reddit.png" width="64" />Reddit</a></li>
       <li><a href="https://youtube.com"><img src="../my_images/logos/youtube.png" width="64" />YouTube</a></li>
     </ul>
   </div>
