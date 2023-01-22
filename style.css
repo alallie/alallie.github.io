@@ -15,6 +15,17 @@
     font-weight: 300;
 }
 
+:root {
+/* Mermaids Garden Color Palette */
+/* https://www.color-hex.com/color-palette/72563 */
+    --firebrick: rgb(178,34,34);
+	--firebrick1: rgb(255,48,48);
+	--goldenrod: rgb(218,165,32);
+	--mediumSeaGreen: rgb(60,179,113);
+	--mediumSlateBlue: rgb(123,104,238);
+    --accent-color: var(--mediumSeaGreen);
+}
+
 body {
     font-family: 'Quicksand', sans-serif;
 }
@@ -23,6 +34,30 @@ h1 {
     border-bottom: 1px solid black;
 }
 
+/* Forms */
+input[type=text] {
+  font-family: 'Quicksand', sans-serif;
+}
+
+input[type=text] {
+  padding: 6px 5px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+    padding: 0.5em 1em;
+    margin-right: 0.5em;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+
+
+/* Block List */
 .block-list {
     list-style-type: none;
     padding: 0;
@@ -37,8 +72,8 @@ h1 {
 }
 
 .block-list a:hover {
-    background-color: rgb(182, 182, 182);
-    color:rgb(255, 255, 255);
+    background-color: var(--accent-color);
+    color: white);
 }
 
 .block-list li{

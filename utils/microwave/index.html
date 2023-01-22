@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microwave Calculator</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+ 
+  <style>
+    form  { display: table;      }
+    p     { display: table-row;  }
+
+    .left_col {
+      display: table-cell;
+      padding-right: 2rem;
+    }
+    .right_col {
+      display: table-cell;
+    }
+
+    .time {
+      padding-left: .5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Microwave Calculator</h1>
+
+  <form oninput="calculate();">
+    <p>
+      <label class="left_col" for="from">From:</label>
+      <select class="right_col" id="from" name="from">
+        <option value="500">500</option>
+        <option value="600">600</option>
+        <option value="700">700</option>
+        <option value="800">800</option>
+        <option value="900">900</option>
+        <option value="1000" selected>1000</option>
+        <option value="1100">1100</option>
+        <option value="1200">1200</option>
+      </select>
+    </p>
+
+    <p>
+      <label class="left_col" for="to">To:</label>
+      <select class="right_col" id="to" name="to">
+        <option value="500">500</option>
+        <option value="600">600</option>
+        <option value="700">700</option>
+        <option value="800" selected>800</option>
+        <option value="900">900</option>
+        <option value="1000">1000</option>
+        <option value="1100">1100</option>
+        <option value="1200">1200</option>
+      </select>
+    </p>
+
+    <p>
+      <div class="left_col"><input type="range" id="time" name="time" min="0" max="900" step="15" value="180"></div>
+      <label class="right_col time" id="setting" for="time"></label>
+    </p>
+
+  </form>
+  <br>
+  <p id="result"></p>
+
+<script>
+
+  function secondsToTime(e){
+    var h = Math.floor(e / 3600).toString().padStart(2,'0'),
+        m = Math.floor(e % 3600 / 60).toString().padStart(2,'0'),
+        s = Math.floor(e % 60).toString().padStart(2,'0');
+
+    // return `${h}:${m}:${s}`;
+    return `${m}:${s}`;
+  }
+
+  function calculate() {
+      const from = parseInt(document.getElementById("from").value);
+      const to = parseInt(document.getElementById("to").value);
+      const total_seconds = parseInt(document.getElementById("time").value);
+
+      const new_total_seconds = total_seconds * (from/to);
+
+      setting
+      document.getElementById("setting").innerHTML = `${secondsToTime(total_seconds)}`;
+      document.getElementById("result").innerHTML = `
+      Set it for <strong>${secondsToTime(new_total_seconds)}</strong>.
+      `;
+  }
+
+  window.onload = () => calculate();
+</script>
+
+</body>
+</html>

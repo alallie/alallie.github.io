@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+
+  <style>
+    .stop {
+      background-color: var(--firebrick);
+    }
+  </style>
+
+</head>
+<body>
+    <h1>Convert Base64</h1>
+
+    <form>
+      <input type="text" id="user_input" autofocus /><br>
+      <button type="button" onclick="convert('encode')">Encode</button>
+      <button type="button" onclick="convert('decode')" class="stop">Decode</button>
+    </form>
+  
+    <p id="result"></p>
+  
+  <script>
+  
+    function convert(x) {
+        const user_input = document.getElementById("user_input").value;
+  
+        if (x == "encode") {
+            document.getElementById("result").innerHTML = `${btoa(user_input)}`;
+        } else if (x == "decode") {
+            document.getElementById("result").innerHTML = `${atob(user_input)}`;
+        } else {
+          alert("error");
+        }
+    }
+  
+  </script>
+
+</body>
+</html>

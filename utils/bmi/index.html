@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+ 
+  <style>
+    th, td {
+      padding: .5em;
+    }
+
+  </style>
+</head>
+<body onload="calculate()">
+
+    <h1>BMI Calculator</h1>
+  
+    <form oninput="calculate()">
+      Height: <input type="text" id="height" maxlength="3" size="4" value="67" autofocus /> inches<br>
+      Weight: <input type="text" id="weight" maxlength="4" size="4" value="200" /> lbs
+    </form>
+  
+    <br><br>
+  
+    <div id="result"></div>
+    <br><br>
+    <div id="ranges"></div>
+  
+  
+  <script>
+    function roundToOne(num) {
+      return +(Math.round(num + "e+1") + "e-1");
+    }
+  
+    function calculateBMI(height,weight) {
+      return roundToOne((weight / (height * height)) * 703);
+    }
+  
+    function classifyBMI(bmi) {
+      if (bmi <= 18.5) {
+        return "Underweight";
+      } else if (bmi < 25) {
+        return "Normal Weight";
+      } else if (bmi < 30) {
+        return "Overweight";
+      } else if (bmi < 35) {
+        return "Obese (Class 1)";
+      } else if (bmi < 40) {
+        return "Severe Obesity (Class 2)";
+      } else if (bmi < 50) {
+        return "Morbid Obesity";
+      } else {
+        return "Extreme Obesity";
+      }
+    }
+  
+    function getGoalWeight(height,bmi) {
+      return Math.round(((height * height)*bmi)/703);
+    }
+  
+    function calculateBmiZone(height,low,high) {
+      return {
+        lowEnd: getGoalWeight(height,low),
+        highEnd: getGoalWeight(height,high)
+      };
+    }
+  
+    function distanceToGoal(height,weight) {
+      const normalZone = calculateBmiZone(height,18.6,24.9);
+  
+      if (weight > normalZone.highEnd) {
+        return weight - normalZone.highEnd;
+      }
+  
+      if (weight < normalZone.lowEnd) {
+        return normalZone.lowEnd - weight;
+      }
+  
+      return 0;
+    }
+  
+    function populateRanges(height) {
+      const zones = [];
+      zones.push({"name": "Underweight", "zone": calculateBmiZone(height,0,18.5)});
+      zones.push({"name": "Normal Weight", "zone": calculateBmiZone(height,18.6,24.9)});
+      zones.push({"name": "Overweight", "zone": calculateBmiZone(height,25,29.9)});
+      zones.push({"name": "Obese (Class 1)", "zone": calculateBmiZone(height,30,34.9)});
+      zones.push({"name": "Severe Obesity (Class 2)", "zone": calculateBmiZone(height,35,39.9)});
+      zones.push({"name": "Morbid Obesity", "zone": calculateBmiZone(height,40,49.9)});
+      zones.push({"name": "Extreme Obesity", "zone": calculateBmiZone(height,50,100)});
+  
+      var content = `
+        <table border=1 frame=hsides rules=rows>
+        <thead style="background-color: MediumSeaGreen; color: white;">
+          <th style="text-align: left;";">Zone</th>
+          <th>Low End</th>
+          <th>High End</th>
+        </thead>
+        <tbody>
+      `;
+      zones.forEach((zone, index, array) => {
+          content += `
+              <tr>
+                <td>${zone.name}</td>
+                <td style="text-align: center;">${zone.zone.lowEnd}</td>
+                <td style="text-align: center;">${zone.zone.highEnd}</td>
+              </tr>
+          `;
+      });
+      content += `</tbody></table>`;
+      document.getElementById("ranges").innerHTML = content;
+    }
+  
+    function calculate() {
+      const weight = document.getElementById("weight").value;
+      const height = document.getElementById("height").value;
+      const bmi = calculateBMI(height,weight);
+      const classification = classifyBMI(bmi);
+      const distanceFromGoal = distanceToGoal(height,weight);
+      document.getElementById("result").innerHTML = `
+                  Your BMI is ${bmi} : ${classification}.<br>
+                  You are ${distanceFromGoal}lbs from a "normal" bmi.`;
+      populateRanges(height);
+    }
+  
+  </script>
+
+
+</body>
+</html>
