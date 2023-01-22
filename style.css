@@ -73,7 +73,7 @@ button {
 
 .block-list a:hover {
     background-color: var(--accent-color);
-    color: white);
+    color: white;
 }
 
 .block-list li{
