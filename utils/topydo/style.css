@@ -1,0 +1,26 @@
+#checklist {
+  display: none;
+}
+#input > textarea {
+  display: block;
+  margin: 0 auto;
+  height: 50vh;
+  width: 75vw;
+}
+#input > button {
+  display: block;
+  margin: 0 auto;
+  width: 75vw;
+  height: 4em;
+  margin-top: 1em;
+}
+
+.done {
+  text-decoration: line-through;
+  color: lightgray;
+}
+.copied::after {
+  float: right;
+  content: "Copied!";
+}
+

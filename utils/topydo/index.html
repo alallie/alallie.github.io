@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopyDo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+    <h1>TopyDo<span class="pull-right" onclick="javascript:window.location.reload();">&circlearrowright;</span></h1>
+
+    <div id="input">
+      <textarea id="user_input"></textarea>
+      <button onclick="generate_list()">Do It</button>
+    </div>
+
+    <div id="checklist"></div>
+
+
+<script>
+  function generate_list() {
+      const text_input = document.getElementById("user_input").value;
+      const text_list = text_input.split(/\r\n|\r|\n/);
+      let list_body = "<ul class='block-list'>";
+      text_list.forEach( line => {
+        const formatted_line = `<a><li>${line}</li></a>`;
+        list_body = list_body.concat("\n", formatted_line);
+      });
+      list_body = list_body.concat("\n", "</ul>");
+      document.getElementById("checklist").innerHTML = list_body;
+      document.getElementById("input").style.display = "none";
+      document.getElementById("checklist").style.display = "block";
+      set_event_listeners();
+  }
+
+  async function copy_text(element) {
+    const copyText = element.innerHTML
+    navigator.clipboard.writeText(copyText);
+    element.classList.toggle("copied");
+  }
+
+  function set_event_listeners() {
+      const li = document.getElementsByTagName("li");
+      for (let i = 0; i < li.length; i++) {
+        li[i].addEventListener("click", function() {
+          const already_done = li[i].className.includes("done");
+          li[i].classList.toggle("done");
+          if (!already_done) {
+            Array.from(document.querySelectorAll('.copied')).forEach((el) => el.classList.remove('copied'));
+            copy_text(li[i]);
+          }
+        });
+      }
+  }
+</script>
+</body>
+</html>
