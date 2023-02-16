@@ -9,18 +9,24 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+    <a id="go_home" href="/"></a>
 
-    <h1>TopyDo<span class="pull-right" onclick="javascript:window.location.reload();">&circlearrowright;</span></h1>
+    <h1>TopyDo<span class="pull-right" onclick="back_to_input()">&circlearrowright;</span></h1>
 
     <div id="input">
       <textarea id="user_input" placeholder="Enter one item per line and click the button. On the resulting screen, as you click to check items off the list, the text will be copied to your clipboard for use."></textarea>
       <button onclick="generate_list()">Do It</button>
     </div>
 
-    <div id="checklist"></div>
+    <div id="checklist">^</div>
 
 
 <script>
+  function back_to_input() {
+      document.getElementById("checklist").style.display = "none";
+      document.getElementById("input").style.display = "block";
+  }
+
   function generate_list() {
       const text_input = document.getElementById("user_input").value;
       const text_list = text_input.split(/\r\n|\r|\n/);

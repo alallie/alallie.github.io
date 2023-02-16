@@ -87,3 +87,11 @@ button {
 .pull-right {
   float: right;
 }
+
+#go_home::after {
+  position: absolute;
+  top: 0px;
+  left: 50vw;
+  transform: translate(-50%, 0);
+  content: "home";
+}

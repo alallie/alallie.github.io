@@ -15,6 +15,8 @@
 
 </head>
 <body>
+    <a id="go_home" href="/"></a>
+
     <h1>Convert Base64</h1>
 
     <form>
@@ -22,14 +24,14 @@
       <button type="button" onclick="convert('encode')">Encode</button>
       <button type="button" onclick="convert('decode')" class="stop">Decode</button>
     </form>
-  
+
     <p id="result"></p>
-  
+
   <script>
-  
+
     function convert(x) {
         const user_input = document.getElementById("user_input").value;
-  
+
         if (x == "encode") {
             document.getElementById("result").innerHTML = `${btoa(user_input)}`;
         } else if (x == "decode") {
@@ -38,7 +40,7 @@
           alert("error");
         }
     }
-  
+
   </script>
 
 </body>

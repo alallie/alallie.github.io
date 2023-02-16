@@ -9,13 +9,14 @@
 
 </head>
 <body>
+    <a id="go_home" href="/"></a>
 
     <h1>Something To Do</h1>
     <p id="bored_result"></p>
     <button onclick="bored_click()" type="button">Something Else</button>
-  
+
   <script>
-  
+
     // https://www.boredapi.com
     function bored_click() {
       fetch('https://www.boredapi.com/api/activity/')
@@ -26,7 +27,7 @@
           `;
         });
     }
-  
+
     window.onload = () => bored_click();
   </script>
 

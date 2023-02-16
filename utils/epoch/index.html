@@ -12,47 +12,48 @@
       background-color: var(--firebrick);
     }
   </style>
- 
+
 </head>
 <body>
+    <a id="go_home" href="/"></a>
 
     <h1>Epoch Time</h1>
-    
+
     <p id="current_epoch">Current Epoch Time:</p>
 
     <input type="text" id="epoch_input" placeholder="Enter epoch time" autofocus />
     <button type="button" onclick="epoch_to_human()">View Human Readable Time</button>
     <p id="epoch_result"></p>
-  
+
     <br>
-  
+
     <input type="text" id="human_input" placeholder="Enter Human Readable Time" autofocus />
     <button type="button" onclick="human_to_epoch()">View Epoch Time</button>
     <p id="human_result"></p>
-  
+
   <script>
     var updateTime = window.setInterval(function(){
       document.getElementById("current_epoch").innerHTML = `Current Epoch Time: ${Math.floor(Date.now() / 1000)} <button class="stop" onclick="stop_counter()">Stop</button>`;
     }, 1000);
-  
+
     function epoch_to_human() {
       const epoch_input = document.getElementById("epoch_input").value;
       var date = new Date(epoch_input * 1000);
       document.getElementById("epoch_result").innerHTML = `
                 ${date.toString()}<br>${date.toUTCString()}`;
     }
-  
+
     function human_to_epoch() {
       const human_input = document.getElementById("human_input").value;
       var date = new Date(human_input).valueOf();
       document.getElementById("human_result").innerHTML = `${date / 1000}`;
     }
-  
+
     function stop_counter() {
       clearInterval(updateTime);
     }
   </script>
-  
+
 
 
 </body>
