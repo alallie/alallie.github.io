@@ -11,10 +11,14 @@
 <body>
     <a id="go_home" href="/"></a>
 
-    <h1>TopyDo<span class="pull-right" onclick="back_to_input()">&circlearrowright;</span></h1>
+    <h1>
+      <a class="pull-left back" href="..">&lt;</a>
+      TopyDo
+      <span class="pull-right pointer" onclick="back_to_input()">&circlearrowright;</span>
+    </h1>
 
     <div id="input">
-      <textarea id="user_input" placeholder="Enter one item per line and click the button. On the resulting screen, as you click to check items off the list, the text will be copied to your clipboard for use."></textarea>
+      <textarea id="user_input" placeholder="1. Enter one item per line and click the button.&#10;2. On the resulting screen, as you click to check items off the list.&#10;3. The text will automatically be copied to your clipboard for use."></textarea>
       <button onclick="generate_list()">Do It</button>
     </div>
 
