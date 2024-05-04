@@ -1,38 +1,48 @@
 @font-face {
-    font-family: Quicksand;
-    src: url("src/fonts/Quicksand-Regular.ttf");
-  }
-
-@font-face {
-    font-family: Quicksand;
-    src: url("src/fonts/Quicksand-Bold.ttf");
-    font-weight: 700;
+  font-family: Quicksand;
+  src: url("src/fonts/Quicksand-Regular.ttf");
 }
 
 @font-face {
-    font-family: Quicksand;
-    src: url("src/fonts/Quicksand-Light.ttf");
-    font-weight: 300;
+  font-family: Quicksand;
+  src: url("src/fonts/Quicksand-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Quicksand;
+  src: url("src/fonts/Quicksand-Light.ttf");
+  font-weight: 300;
 }
 
 :root {
 /* Mermaids Garden Color Palette */
 /* https://www.color-hex.com/color-palette/72563 */
-    --firebrick: rgb(178,34,34);
-	--firebrick1: rgb(255,48,48);
-	--goldenrod: rgb(218,165,32);
-	--mediumSeaGreen: rgb(60,179,113);
-	--mediumSlateBlue: rgb(123,104,238);
-    --accent-color: var(--mediumSeaGreen);
+  --main-text-color: hsl(0, 0%, 25%);
+  --firebrick: rgb(178,34,34);
+  --firebrick1: rgb(255,48,48);
+  --goldenrod: rgb(218,165,32);
+  --mediumSeaGreen: rgb(60,179,113);
+  --mediumSlateBlue: rgb(123,104,238);
+  --accent-color: var(--mediumSeaGreen);
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 h1 {
-    border-bottom: 1px solid black;
-    text-align: center;
+  font-weight: 300;
+  border-bottom: 1px solid var(--main-text-color);
+  text-align: center;
+}
+
+h2 {
+  font-weight: 300;
+  padding: .5em 0 .75em .5em;
+  border-top: 1px dashed var(--main-text-color);
+  border-bottom: 1px dashed var(--main-text-color);
+  vertical-align: middle;
 }
 
 /* Forms */
@@ -49,37 +59,37 @@ input[type=text] {
 }
 
 button {
-    padding: 0.5em 1em;
-    margin-right: 0.5em;
-    background-color: var(--accent-color);
-    border: none;
-    border-radius: 8px;
-    color: white;
+  padding: 0.5em 1em;
+  margin-right: 0.5em;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 8px;
+  color: white;
 }
 
 
 /* Block List */
 .block-list {
-    list-style-type: none;
-    padding: 0;
-    font-size: 1.5em;
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.5em;
 }
 
 .block-list a {
-    text-decoration: none;
-    display: block;
-    padding: .5em;
-    color:rgb(22, 22, 22);
-    cursor: pointer;
+  text-decoration: none;
+  display: block;
+  padding: .5em;
+  color:rgb(22, 22, 22);
+  cursor: pointer;
 }
 
 .block-list a:hover {
-    background-color: var(--accent-color);
-    color: white;
+  background-color: var(--accent-color);
+  color: white;
 }
 
 .block-list li{
-    padding: .5em 0;
+  padding: .5em 0;
 }
 
 
