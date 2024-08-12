@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game On</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+
+  <style>
+
+    table {
+        border-collapse: collapse;
+    }
+    thead {
+        font-weight: bold;
+    }
+    td, th {
+        border: 1px solid black;
+        padding: .5em;
+    }
+  </style>
+
+</head>
+<body>
+    <h1>
+      <a class="pull-left back" href="..">&lt;</a>
+      Game On
+    </h1>
+    <p>Enter one name per line:</p>
+    <textarea id="user-input" rows="10"></textarea>
+    <br>
+    <button onclick="showResults(); return false;">Shuffle</button>
+    <p id="result"></p>
+
+    <h4>Simulation</h4>
+    <p>Running the shuffle 1,000 times, this is how many times each player would have been 1st to play:</p>
+    <button onclick="runSim(); return false;">Run Simulation</button>
+    <p id="sim-results"></p>
+
+  <script>
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // https://stackoverflow.com/questions/979975/get-the-values-from-the-get-parameters-javascript
+    function getQueryParams(qs) {
+        qs = qs.split('+').join(' ');
+
+        var params = {},
+            tokens,
+            re = /[?&]?([^=]+)=([^&]*)/g;
+
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+        }
+
+        return params;
+    }
+
+    let input_params = getQueryParams(document.location.search);
+    // alert(query.foo);
+
+    if ('names' in input_params) {
+        let names = input_params.names.split(',');
+        document.getElementById('user-input').value = names.join("\n");
+        showResults();
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+        return array;
+    }
+
+    function getUsers() {
+        var users_get = document.getElementById('user-input').value;
+        return users_get.split('\n');
+    }
+
+    function randomizeList(input) {
+        return shuffle(input);
+    }
+
+    function showResults() {
+        let order_to_print = randomizeList(getUsers());
+        var my_html = "<ol>";
+        order_to_print.forEach(function(name, index) {
+            my_html += `<li>${name}</li>`;
+        });
+        my_html += "</ol>";
+        document.getElementById('result').innerHTML = my_html;
+    }
+
+    function runSim() {
+        let users = getUsers();
+        result_dict = {};
+        users.forEach(key => {
+            result_dict[key] = 0;
+        });
+        for (let i = 0; i < 1000; i++) {
+            var shuffled = shuffle(users);
+            result_dict[shuffled[0]] += 1;
+        }
+        var my_html = "<table><thead><tr><td>Name</td><td>1st to Play</td></tr></thead><tbody>";
+        Object.entries(result_dict).forEach(([key, value]) => {
+            my_html += `<tr><td>${key}</td><td>${numberWithCommas(value)}</td></tr>`;
+        });
+        my_html += "</ul>";
+
+        document.getElementById('sim-results').innerHTML = my_html;
+    }
+
+  </script>
+
+
+
+</body>
+</html>
