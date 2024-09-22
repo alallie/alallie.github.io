@@ -34,7 +34,7 @@
     <p id="result"></p>
 
     <h4>Simulation</h4>
-    <p>Running the shuffle 1,000 times, this is how many times each player would have been 1st to play:</p>
+    <p>Running the shuffle <input id="sim-count" type="text" size="5" value="100" style="display: inline-block;"> times, this is how many times each player would have been 1st to play:</p>
     <button onclick="runSim(); return false;">Run Simulation</button>
     <p id="sim-results"></p>
 
@@ -97,17 +97,18 @@
 
     function runSim() {
         let users = getUsers();
+        let sim_count = document.getElementById('sim-count').value;
         result_dict = {};
         users.forEach(key => {
             result_dict[key] = 0;
         });
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < sim_count; i++) {
             var shuffled = shuffle(users);
             result_dict[shuffled[0]] += 1;
         }
-        var my_html = "<table><thead><tr><td>Name</td><td>1st to Play</td></tr></thead><tbody>";
+        var my_html = "<table><thead><tr><td>Name</td><td>1st to Play</td><td>Percent</td></tr></thead><tbody>";
         Object.entries(result_dict).forEach(([key, value]) => {
-            my_html += `<tr><td>${key}</td><td>${numberWithCommas(value)}</td></tr>`;
+            my_html += `<tr><td>${key}</td><td>${numberWithCommas(value)}</td><td>${((value/sim_count)*100).toFixed(0)}%</td></tr>`;
         });
         my_html += "</ul>";
 
