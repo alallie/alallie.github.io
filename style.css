@@ -120,3 +120,14 @@ button {
   transform: translate(-50%, 0);
   content: "home";
 } */
+
+/* from the former stand-alone links page */
+li::after {
+  float: right;
+  content: ">";
+}
+
+a li img {
+  padding-right: .75em;
+  vertical-align: middle;
+}
