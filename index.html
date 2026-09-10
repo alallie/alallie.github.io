@@ -1,89 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <style>
-      li::after {
-        float: right;
-        content: ">";
-      }
-
-      h2 {
-        font-weight: 800;
-      }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ef">
+  <meta name="description" content="A personal start page for search, favorite sites, utilities, and a little inspiration.">
+  <title>Launchpad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('launchpad.theme') || 'light';
+    } catch (error) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  </script>
+  <script src="app.js" defer></script>
 </head>
 <body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="wordmark" href="./" aria-label="Launchpad home">
+        <span class="wordmark-mark" aria-hidden="true">+</span>
+        <span>launchpad</span>
+      </a>
+      <div class="topbar-meta">
+        <time id="current-date" datetime=""></time>
+        <button class="icon-button" id="settings-button" type="button" aria-label="Open settings" aria-controls="settings-dialog" aria-haspopup="dialog">Settings</button>
+      </div>
+    </header>
 
-    <!-- <h1>home</h1> -->
+    <main>
+      <section class="hero" aria-labelledby="greeting">
+        <div class="hero-copy">
+          <p class="eyebrow">Your internet, arranged</p>
+          <h1 id="greeting">Good morning<span class="accent-dot">.</span></h1>
+          <p class="hero-note">A quieter way to begin.</p>
+        </div>
+        <div class="signal" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      </section>
 
-    <!-- <ul class="block-list">
-        <a href="links"><li>Links</li></a>
-        <a href="utils"><li>Utilities</li></a>
-    </ul> -->
+      <section class="search-section" aria-labelledby="search-heading">
+        <div class="section-kicker"><span id="search-heading">Search the web</span><span class="kicker-line"></span></div>
+        <form class="search-form" id="search-form">
+          <label class="sr-only" for="search-input">Search query</label>
+          <input id="search-input" name="query" type="search" placeholder="What are you looking for?" autocomplete="off" spellcheck="false" autofocus>
+          <label class="sr-only" for="engine-select">Search engine</label>
+          <select id="engine-select" aria-label="Search engine"></select>
+          <button class="search-submit" type="submit" aria-label="Search">Go <span aria-hidden="true">&#8599;</span></button>
+        </form>
+      </section>
 
-    <h2>Email</h2>
-    <ul class="block-list">
-      <a href="https://mail.google.com"><li><img src="links/logos/gmail.png" width="64" />Gmail</li></a>
-      <a href="https://www.icloud.com"><li><img src="links/logos/icloud.png" width="64" />iCloud</li></a>
-      <a href="https://outlook.live.com"><li><img src="links/logos/outlook.png" width="64" />Outlook</li></a>
-      <a href="https://mail.proton.me"><li><img src="links/logos/proton.png" width="64" />Proton</li></a>
-    </ul>
+      <div class="content-grid">
+        <section class="favorites-panel" aria-labelledby="favorites-heading">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker"><span>Frequent stops</span><span class="kicker-line"></span></p>
+              <h2 id="favorites-heading">Open something good</h2>
+            </div>
+            <button class="text-button" id="manage-links-button" type="button">Manage <span aria-hidden="true">&#8599;</span></button>
+          </div>
+          <div class="app-grid" id="favorites-grid"></div>
+        </section>
 
-    <h2>Learn Something</h2>
-    <ul class="block-list">
-      <a href="https://en.wikipedia.org/wiki/Portal:Current_events"><li><img src="links/logos/wikipedia.png" width="64" />Wikipedia: Current Events</li></a>
-      <a href="https://sourdough-u.teachable.com"><li><img src="links/logos/prohomecooks.png" width="64" />Pro Home Cooks</li></a>
-      <a href="https://www.udemy.com"><li><img src="links/logos/udemy.png" width="64" />Udemy</li></a>
-      <a href="https://support.apple.com/en-us/docs"><li><img src="links/logos/apple.png" width="64" />Apple Support Docs</li></a>
-    </ul>
+        <aside class="quote-panel" aria-labelledby="quote-heading">
+          <div class="quote-topline">
+            <p class="section-kicker"><span id="quote-heading">A thought for today</span></p>
+            <button class="icon-button subtle" id="quote-refresh" type="button" aria-label="Get another quote">Refresh</button>
+          </div>
+          <blockquote id="quote-text">Loading a little perspective...</blockquote>
+          <p class="quote-author" id="quote-author"></p>
+          <span class="quote-rule" aria-hidden="true"></span>
+          <p class="quote-status" id="quote-status">Finding a thought</p>
+        </aside>
+      </div>
 
-    <h2>Things To Do</h2>
-    <ul class="block-list">
-      <a href="https://www.313presents.com"><li><img src="links/logos/313presents.jpg" width="64" />313 Presents</li></a>
-      <a href="https://www.comedycastle.com"><li><img src="links/logos/comedycastle.png" width="64" />Comedy Castle</li></a>
-      <a href="https://www.livenation.com/venue/KovZpZAEAkEA/saint-andrew-s-hall-events"><li><img src="links/logos/livenation.png" width="64" />Saint Andrew's Hall</li></a>
-      <a href="https://www.livenation.com/venue/KovZpZAEAktA/the-fillmore-detroit-events"><li><img src="links/logos/livenation.png" width="64" />The Fillmore</li></a>
-    </ul>
+      <section class="utilities-section" aria-labelledby="utilities-heading">
+        <div class="section-heading utilities-heading">
+          <div>
+            <p class="section-kicker"><span>Useful little things</span><span class="kicker-line"></span></p>
+            <h2 id="utilities-heading">Utilities</h2>
+          </div>
+          <span class="section-note">All calculations stay in your browser</span>
+        </div>
+        <div class="utilities-grid" id="utilities-grid"></div>
+      </section>
+    </main>
 
-    <h2>Tools</h2>
-    <ul class="block-list">
-      <a href="https://kagi.com/summarizer/index.html"><li><img src="links/logos/kagi-summarizer.png" width="64" />Kagi Summarizer</li></a>
-      <a href="https://translate.kagi.com"><li><img src="links/logos/kagi-translate.png" width="64" />Kagi Translate</li></a>
-      <a href="https://excalidraw.com"><li><img src="links/logos/excalidraw.png" width="64" />Excalidraw</li></a>
-      <a href="https://simpleicons.org"><li><img src="links/logos/simpleicons.png" width="64" />Simple Icons</li></a>
-      <a href="https://icon-sets.iconify.design"><li><img src="links/logos/iconify.png" width="64" />Iconify</li></a>
-    </ul>
+    <footer class="footer"><span>launchpad / <span id="footer-year"></span></span><span>Built for the in-between moments.</span></footer>
+  </div>
 
-    <h2>Waste Time</h2>
-    <ul class="block-list">
-      <!-- <a href="https://mastodon.social"><li><img src="links/logos/mastodon.png" width="64" />Mastodon</li></a> -->
-      <a href="https://kagi.com/smallweb"><li><img src="links/logos/kagi-smallweb.png" width="64" />Kagi Small Web</li></a>
-      <a href="https://app.plex.tv/desktop/"><li><img src="links/logos/plex.png" width="64" />Plex</li></a>
-      <a href="https://youtube.com"><li><img src="links/logos/youtube.png" width="64" />YouTube</li></a>
-      <a href="http://michaelyingling.com/random/calvin_and_hobbes/"><li><img src="links/logos/calvin.png" width="64" />Calvin and Hobbes</li></a>
-    </ul>
-
-    <h2>Work</h2>
-    <ul class="block-list">
-      <a href="https://stillhiring.today"><li><img src="links/logos/stillhiring.png" width="64" />Still Hiring?</li></a>
-    </ul>
-
-    <h2>Utilities</h2>
-    <ul class="block-list">
-      <a href="utils/base64/"><li>Base64</li></a>
-      <a href="utils/bmi/"><li>BMI Calculator</li></a>
-      <a href="utils/bored/"><li>Bored</li></a>
-      <a href="utils/epoch/"><li>Epoch Time</li></a>
-      <a href="utils/gameon/"><li>Game On</li></a>
-      <a href="utils/microwave/"><li>Microwave</li></a>
-      <a href="utils/copydo/"><li>CopyDo</li></a>
-  </ul>
-
+  <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-heading">
+    <div class="dialog-header">
+      <div>
+        <p class="eyebrow">Personalize</p>
+        <h2 id="settings-heading">Settings</h2>
+      </div>
+      <button class="icon-button" id="close-settings" type="button" aria-label="Close settings">Close</button>
+    </div>
+    <div class="settings-content">
+      <fieldset>
+        <legend>Appearance</legend>
+        <div class="theme-options" id="theme-options"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Custom search engines</legend>
+        <p class="field-hint">Add a URL with <code>{query}</code> where your search should go.</p>
+        <form class="custom-engine-form" id="custom-engine-form">
+          <label><span>Name</span><input id="custom-engine-name" type="text" maxlength="30" placeholder="My search"></label>
+          <label><span>URL template</span><input id="custom-engine-url" type="url" placeholder="https://example.com/?q={query}"></label>
+          <button class="button button-dark" type="submit">Add engine</button>
+        </form>
+        <div class="custom-engine-list" id="custom-engine-list"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Favorite links</legend>
+        <p class="field-hint">Add a site to the launcher. Your links stay on this device.</p>
+        <form class="custom-engine-form" id="custom-link-form">
+          <label><span>Name</span><input id="custom-link-name" type="text" maxlength="30" placeholder="My site"></label>
+          <label><span>Website URL</span><input id="custom-link-url" type="url" placeholder="https://example.com"></label>
+          <button class="button button-dark" type="submit">Add link</button>
+        </form>
+        <div class="custom-engine-list" id="custom-link-list"></div>
+      </fieldset>
+    </div>
+  </dialog>
+  <div class="dialog-backdrop" id="dialog-backdrop" hidden></div>
 </body>
 </html>
