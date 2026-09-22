@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f4ef">
-  <meta name="description" content="A personal start page for search, favorite sites, utilities, and a little inspiration.">
+  <meta name="description" content="A personal start page for search and favorite sites.">
   <title>Launchpad</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,21 +27,12 @@
         <span>launchpad</span>
       </a>
       <div class="topbar-meta">
-        <time id="current-date" datetime=""></time>
+        <a class="topbar-link" href="utils/">Utilities</a>
         <button class="icon-button" id="settings-button" type="button" aria-label="Open settings" aria-controls="settings-dialog" aria-haspopup="dialog">Settings</button>
       </div>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="greeting">
-        <div class="hero-copy">
-          <p class="eyebrow">Your internet, arranged</p>
-          <h1 id="greeting">Good morning<span class="accent-dot">.</span></h1>
-          <p class="hero-note">A quieter way to begin.</p>
-        </div>
-        <div class="signal" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-      </section>
-
       <section class="search-section" aria-labelledby="search-heading">
         <div class="section-kicker"><span id="search-heading">Search the web</span><span class="kicker-line"></span></div>
         <form class="search-form" id="search-form">
@@ -53,8 +44,7 @@
         </form>
       </section>
 
-      <div class="content-grid">
-        <section class="favorites-panel" aria-labelledby="favorites-heading">
+      <section class="favorites-panel" aria-labelledby="favorites-heading">
           <div class="section-heading">
             <div>
               <p class="section-kicker"><span>Frequent stops</span><span class="kicker-line"></span></p>
@@ -63,33 +53,21 @@
             <button class="text-button" id="manage-links-button" type="button">Manage <span aria-hidden="true">&#8599;</span></button>
           </div>
           <div class="app-grid" id="favorites-grid"></div>
-        </section>
-
-        <aside class="quote-panel" aria-labelledby="quote-heading">
-          <div class="quote-topline">
-            <p class="section-kicker"><span id="quote-heading">A thought for today</span></p>
-            <button class="icon-button subtle" id="quote-refresh" type="button" aria-label="Get another quote">Refresh</button>
-          </div>
-          <blockquote id="quote-text">Loading a little perspective...</blockquote>
-          <p class="quote-author" id="quote-author"></p>
-          <span class="quote-rule" aria-hidden="true"></span>
-          <p class="quote-status" id="quote-status">Finding a thought</p>
-        </aside>
-      </div>
-
-      <section class="utilities-section" aria-labelledby="utilities-heading">
-        <div class="section-heading utilities-heading">
-          <div>
-            <p class="section-kicker"><span>Useful little things</span><span class="kicker-line"></span></p>
-            <h2 id="utilities-heading">Utilities</h2>
-          </div>
-          <span class="section-note">All calculations stay in your browser</span>
-        </div>
-        <div class="utilities-grid" id="utilities-grid"></div>
       </section>
+
+      <aside class="quote-panel quote-panel-home" aria-labelledby="quote-heading">
+        <div class="quote-topline">
+          <p class="section-kicker"><span id="quote-heading">A thought for today</span></p>
+          <button class="icon-button subtle" id="quote-refresh" type="button" aria-label="Get another quote">Refresh</button>
+        </div>
+        <blockquote id="quote-text">Loading a little perspective...</blockquote>
+        <p class="quote-author" id="quote-author"></p>
+        <span class="quote-rule" aria-hidden="true"></span>
+        <p class="quote-status" id="quote-status">Finding a thought</p>
+      </aside>
     </main>
 
-    <footer class="footer"><span>launchpad / <span id="footer-year"></span></span><span>Built for the in-between moments.</span></footer>
+    <footer class="footer"><span>launchpad</span><a class="topbar-link" href="utils/">Utilities</a></footer>
   </div>
 
   <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-heading">

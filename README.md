@@ -20,6 +20,7 @@ Then open <http://localhost:8000>.
 - Favorite links are defined in `favorites` in `app.js`.
 - Themes are defined through CSS variables in `style.css` and registered in `renderThemeOptions`.
 - Utilities are built by `renderUtilities`; add another utility card there using the existing utility-card pattern.
+- Utilities live on the dedicated `/utils/` page so the start page stays focused on search and links.
 - Quotes try the public DummyJSON quote endpoint first and use a bundled collection when the request fails or the page is offline.
 
 ## GitHub Pages

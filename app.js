@@ -80,6 +80,7 @@ function setTheme(theme) {
 
 function renderEngines() {
   const select = $('#engine-select');
+  if (!select) return;
   select.replaceChildren();
   getEngines().forEach((engine) => {
     const option = new Option(engine.name, engine.id);
@@ -91,6 +92,7 @@ function renderEngines() {
 
 function renderFavorites() {
   const grid = $('#favorites-grid');
+  if (!grid) return;
   grid.replaceChildren();
   [...builtInFavorites, ...state.customLinks].forEach((site) => {
     const tile = document.createElement('a');
@@ -159,6 +161,7 @@ function renderThemeOptions() {
 
 function renderCustomEngines() {
   const list = $('#custom-engine-list');
+  if (!list) return;
   list.replaceChildren();
   if (!state.customEngines.length) {
     const empty = document.createElement('p');
@@ -193,6 +196,7 @@ function renderCustomEngines() {
 
 function renderCustomLinks() {
   const list = $('#custom-link-list');
+  if (!list) return;
   list.replaceChildren();
   if (!state.customLinks.length) {
     const empty = document.createElement('p');
@@ -277,6 +281,7 @@ function showQuote(quote, source) {
 }
 
 async function loadQuote() {
+  if (!$('#quote-status')) return;
   $('#quote-status').textContent = 'Finding a thought';
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 4000);
@@ -399,42 +404,33 @@ function renderUtilities() {
 
 function setupSettings() {
   const dialog = $('#settings-dialog');
+  if (!dialog) return;
   $('#settings-button').addEventListener('click', () => dialog.showModal());
   $('#close-settings').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-  $('#custom-engine-form').addEventListener('submit', addCustomEngine);
-  $('#custom-link-form').addEventListener('submit', addCustomLink);
-  $('#manage-links-button').addEventListener('click', () => {
+  $('#custom-engine-form')?.addEventListener('submit', addCustomEngine);
+  $('#custom-link-form')?.addEventListener('submit', addCustomLink);
+  $('#manage-links-button')?.addEventListener('click', () => {
     dialog.showModal();
     $('#custom-link-name').focus();
   });
 }
 
-function updateClock() {
-  const now = new Date();
-  $('#current-date').dateTime = now.toISOString().slice(0, 10);
-  $('#current-date').textContent = now.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-  const hour = now.getHours();
-  $('#greeting').firstChild.textContent = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
-}
-
 function init() {
   setTheme(state.theme);
-  updateClock();
-  $('#footer-year').textContent = new Date().getFullYear();
   renderEngines();
   renderFavorites();
   renderThemeOptions();
   renderCustomEngines();
   renderCustomLinks();
-  renderUtilities();
+  if ($('#utilities-grid')) renderUtilities();
   setupSettings();
-  $('#search-form').addEventListener('submit', submitSearch);
-  $('#engine-select').addEventListener('change', (event) => {
+  $('#search-form')?.addEventListener('submit', submitSearch);
+  $('#engine-select')?.addEventListener('change', (event) => {
     state.activeEngine = event.target.value;
     setStorage(STORAGE.engine, state.activeEngine);
   });
-  $('#quote-refresh').addEventListener('click', loadQuote);
+  $('#quote-refresh')?.addEventListener('click', loadQuote);
   loadQuote();
 }
 
